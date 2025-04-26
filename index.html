@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky 4D with Caishen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-yellow-200 min-h-screen flex flex-col">
+    <div class="pyro"></div>
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div class="text-center max-w-md mx-auto">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-red-700 text-center tracking-wide drop-shadow-sm mb-6">
+                🎲 Feeling Lucky? Ask Caishen! 🍊
+            </h1>
+            <img src="img/image__2_-removebg-preview%20-%20Edited.png" alt="Caishen" class="mx-auto mb-4 float-animation w-48 sm:w-56 md:w-64">
+            <button onclick="generateNumber()" class="bg-yellow-800 text-white py-2 sm:py-3 px-4 sm:px-6 rounded-full text-base sm:text-lg hover:bg-yellow-700 transition-colors duration-300 shadow-lg hover:shadow-xl">Get Lucky 4D Numbers</button>
+            <div id="numberDisplay" class="mt-6 text-2xl sm:text-3xl font-bold text-yellow-800 number-enter"></div>
+            <div id="socialButtons" class="social-buttons flex-wrap">
+                <button onclick="shareOnFacebook()" class="social-button facebook">
+                    <i class="fab fa-facebook-f"></i>
+                    Share
+                </button>
+                <button onclick="shareOnTwitter()" class="social-button twitter">
+                    <i class="fab fa-twitter"></i>
+                    Tweet
+                </button>
+                <button onclick="shareOnWhatsApp()" class="social-button whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    Share
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center text-xs text-gray-500 py-6">
+        Built with ❤️ and 🤖 magic. Enjoy your lucky 4D draw! 🍀
+    </footer>
+
+    <script>
+        function createFirework(x, y) {
+            const colors = ['#ff0', '#f0f', '#0ff', '#f00', '#0f0'];
+            const particles = 30;
+            const pyro = document.querySelector('.pyro');
+
+            for (let i = 0; i < particles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework';
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                const angle = (i * 360) / particles;
+                const velocity = 50 + Math.random() * 50;
+                const dx = Math.cos(angle * Math.PI / 180) * velocity;
+                const dy = Math.sin(angle * Math.PI / 180) * velocity;
+                
+                particle.style.setProperty('--x', `${x}px`);
+                particle.style.setProperty('--y', `${y}px`);
+                particle.style.setProperty('--dx', `${dx}px`);
+                particle.style.setProperty('--dy', `${dy}px`);
+                
+                particle.style.animation = 'firework 1s forwards';
+                
+                pyro.appendChild(particle);
+                setTimeout(() => particle.remove(), 1000);
+            }
+        }
+
+        function createMultipleFireworks() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * width;
+                    const y = Math.random() * (height * 0.7); // Keep fireworks in upper 70% of screen
+                    createFirework(x, y);
+                }, i * 300);
+            }
+        }
+
+        function generateNumber() {
+            const number = String(Math.floor(Math.random() * 10000)).padStart(4, '0');
+            const display = document.getElementById('numberDisplay');
+            
+            // Reset classes
+            display.classList.remove('number-enter-active', 'number-animation');
+            display.classList.add('number-enter');
+            
+            setTimeout(() => {
+                display.textContent = number;
+                display.classList.add('number-enter-active');
+                
+                setTimeout(() => {
+                    display.classList.add('number-animation');
+                    createMultipleFireworks(); // Add fireworks after number animation
+                }, 500);
+            }, 100);
+        }
+
+        function shareOnFacebook() {
+            const number = document.getElementById('numberDisplay').textContent;
+            const text = `My lucky 4D number from Caishen is ${number}! 🎲🍊`;
+            const url = window.location.href;
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function shareOnTwitter() {
+            const number = document.getElementById('numberDisplay').textContent;
+            const text = `My lucky 4D number from Caishen is ${number}! 🎲🍊`;
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function shareOnWhatsApp() {
+            const number = document.getElementById('numberDisplay').textContent;
+            const text = `My lucky 4D number from Caishen is ${number}! 🎲🍊`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+        }
+    </script>
+</body>
+</html>
