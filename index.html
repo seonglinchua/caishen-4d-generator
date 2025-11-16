@@ -5,19 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lucky 4D with Caishen</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'caishen-gold': '#FFD700',
+                        'caishen-crimson': '#C41E3A',
+                        'caishen-purple': '#8B008B',
+                        'caishen-amber': '#FF6B35',
+                        'imperial-gold': '#F4C430',
+                        'wealth-red': '#DC143C',
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-yellow-200 min-h-screen flex flex-col">
+<body class="bg-gradient-to-br from-amber-50 via-yellow-100 to-orange-100 min-h-screen flex flex-col" style="background: linear-gradient(135deg, #FFF8DC 0%, #FFE4B5 50%, #FFDAB9 100%);">
     <div class="pyro"></div>
     <main class="flex-grow flex items-center justify-center p-4">
         <div class="text-center max-w-md mx-auto">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-red-700 text-center tracking-wide drop-shadow-sm mb-6">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center tracking-wide mb-6" style="color: #C41E3A; text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.3);">
                 🎲 Feeling Lucky? Ask Caishen! 🍊
             </h1>
             <img src="img/image__2_-removebg-preview%20-%20Edited.png" alt="Caishen" class="mx-auto mb-4 float-animation w-48 sm:w-56 md:w-64">
-            <button onclick="generateNumber()" class="bg-yellow-800 text-white py-2 sm:py-3 px-4 sm:px-6 rounded-full text-base sm:text-lg hover:bg-yellow-700 transition-colors duration-300 shadow-lg hover:shadow-xl">Get Lucky 4D Numbers</button>
-            <div id="numberDisplay" class="mt-6 text-2xl sm:text-3xl font-bold text-yellow-800 number-enter"></div>
+            <button onclick="generateNumber()" class="text-white py-2 sm:py-3 px-4 sm:px-6 rounded-full text-base sm:text-lg transition-colors duration-300 shadow-lg hover:shadow-xl font-bold" style="background: linear-gradient(135deg, #C41E3A 0%, #8B0000 100%); border: 2px solid #FFD700;" onmouseover="this.style.background='linear-gradient(135deg, #DC143C 0%, #A0001E 100%)'" onmouseout="this.style.background='linear-gradient(135deg, #C41E3A 0%, #8B0000 100%)'">Get Lucky 4D Numbers</button>
+            <div id="numberDisplay" class="mt-6 text-2xl sm:text-3xl font-bold number-enter" style="color: #FFD700; text-shadow: 2px 2px 4px rgba(196, 30, 58, 0.3), 0 0 10px rgba(255, 215, 0, 0.5);"></div>
             <div id="socialButtons" class="social-buttons flex-wrap">
                 <button onclick="shareOnFacebook()" class="social-button facebook">
                     <i class="fab fa-facebook-f"></i>
@@ -35,13 +51,13 @@
         </div>
     </main>
 
-    <footer class="text-center text-xs text-gray-500 py-6">
+    <footer class="text-center text-xs py-6" style="color: #8B4513;">
         Built with ❤️ and 🤖 magic. Enjoy your lucky 4D draw! 🍀
     </footer>
 
     <script>
         function createFirework(x, y) {
-            const colors = ['#ff0', '#f0f', '#0ff', '#f00', '#0f0'];
+            const colors = ['#FFD700', '#C41E3A', '#8B008B', '#FF6B35', '#DC143C', '#F4C430'];
             const particles = 30;
             const pyro = document.querySelector('.pyro');
 
