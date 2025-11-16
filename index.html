@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucky 4D with Caishen</title>
+    <title>Lucky 4D & TOTO with Caishen</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -32,9 +32,25 @@
                 🎲 Feeling Lucky? Ask Caishen! 🍊
             </h1>
             <img src="img/image__2_-removebg-preview%20-%20Edited.png" alt="Caishen" class="mx-auto mb-4 float-animation w-48 sm:w-56 md:w-64">
-            <button onclick="generateNumber()" class="text-white py-2 sm:py-3 px-4 sm:px-6 rounded-full text-base sm:text-lg transition-colors duration-300 shadow-lg hover:shadow-xl font-bold" style="background: linear-gradient(135deg, #C41E3A 0%, #8B0000 100%); border: 2px solid #FFD700;" onmouseover="this.style.background='linear-gradient(135deg, #DC143C 0%, #A0001E 100%)'" onmouseout="this.style.background='linear-gradient(135deg, #C41E3A 0%, #8B0000 100%)'">Get Lucky 4D Numbers</button>
+
+            <!-- Game Selection Buttons -->
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 justify-center">
+                <button onclick="generateNumber()" class="text-white py-2 sm:py-3 px-4 sm:px-6 rounded-full text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-xl font-bold flex-1 sm:flex-initial" style="background: linear-gradient(135deg, #C41E3A 0%, #8B0000 100%); border: 2px solid #FFD700;" onmouseover="this.style.background='linear-gradient(135deg, #DC143C 0%, #A0001E 100%)'" onmouseout="this.style.background='linear-gradient(135deg, #C41E3A 0%, #8B0000 100%)'">
+                    <span class="hidden sm:inline">Get Lucky 4D Numbers</span>
+                    <span class="sm:hidden">4D Numbers</span>
+                </button>
+                <button onclick="generateTOTO()" class="text-white py-2 sm:py-3 px-4 sm:px-6 rounded-full text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-xl font-bold flex-1 sm:flex-initial" style="background: linear-gradient(135deg, #8B008B 0%, #4B0082 100%); border: 2px solid #FFD700;" onmouseover="this.style.background='linear-gradient(135deg, #9932CC 0%, #6A0DAD 100%)'" onmouseout="this.style.background='linear-gradient(135deg, #8B008B 0%, #4B0082 100%)'">
+                    <span class="hidden sm:inline">Get Lucky TOTO Numbers</span>
+                    <span class="sm:hidden">TOTO Numbers</span>
+                </button>
+            </div>
+
+            <!-- Display Areas -->
             <div id="numberDisplay" class="mt-6 text-2xl sm:text-3xl font-bold number-enter" style="color: #FFD700; text-shadow: 2px 2px 4px rgba(196, 30, 58, 0.3), 0 0 10px rgba(255, 215, 0, 0.5);"></div>
-            <div id="socialButtons" class="social-buttons flex-wrap">
+            <div id="totoDisplay" class="mt-6 text-2xl sm:text-3xl font-bold number-enter hidden" style="color: #FFD700; text-shadow: 2px 2px 4px rgba(196, 30, 58, 0.3), 0 0 10px rgba(255, 215, 0, 0.5);"></div>
+
+            <!-- Social Buttons for 4D -->
+            <div id="socialButtons" class="social-buttons flex-wrap hidden">
                 <button onclick="shareOnFacebook()" class="social-button facebook">
                     <i class="fab fa-facebook-f"></i>
                     Share
@@ -48,11 +64,27 @@
                     Share
                 </button>
             </div>
+
+            <!-- Social Buttons for TOTO -->
+            <div id="totoSocialButtons" class="social-buttons flex-wrap hidden">
+                <button onclick="shareOnFacebookTOTO()" class="social-button facebook">
+                    <i class="fab fa-facebook-f"></i>
+                    Share
+                </button>
+                <button onclick="shareOnTwitterTOTO()" class="social-button twitter">
+                    <i class="fab fa-twitter"></i>
+                    Tweet
+                </button>
+                <button onclick="shareOnWhatsAppTOTO()" class="social-button whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    Share
+                </button>
+            </div>
         </div>
     </main>
 
     <footer class="text-center text-xs py-6" style="color: #8B4513;">
-        Built with ❤️ and 🤖 magic. Enjoy your lucky 4D draw! 🍀
+        Built with ❤️ and 🤖 magic. Enjoy your lucky 4D & TOTO draws! 🍀
     </footer>
 
     <script>
@@ -99,18 +131,68 @@
         function generateNumber() {
             const number = String(Math.floor(Math.random() * 10000)).padStart(4, '0');
             const display = document.getElementById('numberDisplay');
-            
+            const totoDisplay = document.getElementById('totoDisplay');
+            const socialButtons = document.getElementById('socialButtons');
+            const totoSocialButtons = document.getElementById('totoSocialButtons');
+
+            // Hide TOTO display and show 4D display
+            totoDisplay.classList.add('hidden');
+            display.classList.remove('hidden');
+            totoSocialButtons.classList.add('hidden');
+
             // Reset classes
             display.classList.remove('number-enter-active', 'number-animation');
             display.classList.add('number-enter');
-            
+
             setTimeout(() => {
                 display.textContent = number;
                 display.classList.add('number-enter-active');
-                
+
                 setTimeout(() => {
                     display.classList.add('number-animation');
                     createMultipleFireworks(); // Add fireworks after number animation
+                    socialButtons.classList.remove('hidden'); // Show social buttons
+                }, 500);
+            }, 100);
+        }
+
+        function generateTOTO() {
+            // Generate 6 unique numbers from 1-49
+            const numbers = [];
+            while (numbers.length < 6) {
+                const num = Math.floor(Math.random() * 49) + 1;
+                if (!numbers.includes(num)) {
+                    numbers.push(num);
+                }
+            }
+            numbers.sort((a, b) => a - b);
+
+            const display = document.getElementById('totoDisplay');
+            const fourDDisplay = document.getElementById('numberDisplay');
+            const socialButtons = document.getElementById('socialButtons');
+            const totoSocialButtons = document.getElementById('totoSocialButtons');
+
+            // Hide 4D display and show TOTO display
+            fourDDisplay.classList.add('hidden');
+            display.classList.remove('hidden');
+            socialButtons.classList.add('hidden');
+
+            // Reset classes
+            display.classList.remove('number-enter-active', 'number-animation');
+            display.classList.add('number-enter');
+
+            setTimeout(() => {
+                // Format numbers with spacing and ball styling
+                const formattedNumbers = numbers.map(n =>
+                    `<span class="toto-ball">${String(n).padStart(2, '0')}</span>`
+                ).join(' ');
+                display.innerHTML = formattedNumbers;
+                display.classList.add('number-enter-active');
+
+                setTimeout(() => {
+                    display.classList.add('number-animation');
+                    createMultipleFireworks(); // Add fireworks after number animation
+                    totoSocialButtons.classList.remove('hidden'); // Show social buttons
                 }, 500);
             }, 100);
         }
@@ -131,6 +213,28 @@
         function shareOnWhatsApp() {
             const number = document.getElementById('numberDisplay').textContent;
             const text = `My lucky 4D number from Caishen is ${number}! 🎲🍊`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function shareOnFacebookTOTO() {
+            const display = document.getElementById('totoDisplay');
+            const numbers = Array.from(display.querySelectorAll('.toto-ball')).map(el => el.textContent).join(', ');
+            const text = `My lucky TOTO numbers from Caishen are ${numbers}! 🎲🍊`;
+            const url = window.location.href;
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function shareOnTwitterTOTO() {
+            const display = document.getElementById('totoDisplay');
+            const numbers = Array.from(display.querySelectorAll('.toto-ball')).map(el => el.textContent).join(', ');
+            const text = `My lucky TOTO numbers from Caishen are ${numbers}! 🎲🍊`;
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function shareOnWhatsAppTOTO() {
+            const display = document.getElementById('totoDisplay');
+            const numbers = Array.from(display.querySelectorAll('.toto-ball')).map(el => el.textContent).join(', ');
+            const text = `My lucky TOTO numbers from Caishen are ${numbers}! 🎲🍊`;
             window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
         }
     </script>
