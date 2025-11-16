@@ -1,3 +1,16 @@
+:root {
+    /* Caishen God of Wealth Color Palette */
+    --caishen-gold: #FFD700;
+    --imperial-gold: #F4C430;
+    --caishen-crimson: #C41E3A;
+    --wealth-red: #DC143C;
+    --dark-red: #8B0000;
+    --caishen-purple: #8B008B;
+    --caishen-amber: #FF6B35;
+    --gold-shadow: rgba(255, 215, 0, 0.5);
+    --red-shadow: rgba(196, 30, 58, 0.3);
+}
+
 @keyframes float {
     0% {
         transform: translateY(0px);
