@@ -24,14 +24,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gradient-to-br from-amber-50 via-yellow-100 to-orange-100 min-h-screen flex flex-col" style="background: linear-gradient(135deg, #FFF8DC 0%, #FFE4B5 50%, #FFDAB9 100%);">
+<body class="bg-gradient-to-br from-amber-50 via-yellow-100 to-orange-100 min-h-screen flex flex-col" style="background: linear-gradient(135deg, #FF6B35 0%, #F4C430 25%, #FFD700 50%, #FF6B35 75%, #DC143C 100%); background-size: 400% 400%; animation: gradientShift 15s ease infinite;">
     <div class="pyro"></div>
     <main class="flex-grow flex items-center justify-center p-4">
-        <div class="text-center max-w-md mx-auto">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center tracking-wide mb-6" style="color: #C41E3A; text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.3);">
+        <div class="text-center max-w-2xl mx-auto glass-card">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center tracking-wide mb-6" style="color: #8B0000; text-shadow: 2px 2px 8px rgba(255, 215, 0, 0.6), 0 0 20px rgba(255, 215, 0, 0.3);">
                 🎲 Feeling Lucky? Ask Caishen! 🍊
             </h1>
-            <img src="img/image__2_-removebg-preview%20-%20Edited.png" alt="Caishen" class="mx-auto mb-4 float-animation w-48 sm:w-56 md:w-64">
+            <div class="glass-image-container mx-auto mb-6">
+                <img src="img/image__2_-removebg-preview%20-%20Edited.png" alt="Caishen" class="float-animation w-48 sm:w-56 md:w-64">
+            </div>
 
             <!-- Game Selection Buttons -->
             <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 justify-center">
@@ -46,8 +48,8 @@
             </div>
 
             <!-- Display Areas -->
-            <div id="numberDisplay" class="mt-6 text-2xl sm:text-3xl font-bold number-enter" style="color: #FFD700; text-shadow: 2px 2px 4px rgba(196, 30, 58, 0.3), 0 0 10px rgba(255, 215, 0, 0.5);"></div>
-            <div id="totoDisplay" class="mt-6 text-2xl sm:text-3xl font-bold number-enter hidden" style="color: #FFD700; text-shadow: 2px 2px 4px rgba(196, 30, 58, 0.3), 0 0 10px rgba(255, 215, 0, 0.5);"></div>
+            <div id="numberDisplay" class="glass-display text-2xl sm:text-3xl font-bold number-enter" style="color: #FFD700; text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 215, 0, 0.8);"></div>
+            <div id="totoDisplay" class="glass-display text-2xl sm:text-3xl font-bold number-enter hidden" style="color: #FFD700; text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 215, 0, 0.8);"></div>
 
             <!-- Social Buttons for 4D -->
             <div id="socialButtons" class="social-buttons flex-wrap hidden">
@@ -83,7 +85,7 @@
         </div>
     </main>
 
-    <footer class="text-center text-xs py-6" style="color: #8B4513;">
+    <footer class="text-center text-sm py-6" style="color: rgba(139, 69, 19, 0.9); text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);">
         Built with ❤️ and 🤖 magic. Enjoy your lucky 4D & TOTO draws! 🍀
     </footer>
 
