@@ -45,6 +45,10 @@
                     <span class="hidden sm:inline">Get Lucky TOTO Numbers</span>
                     <span class="sm:hidden">TOTO Numbers</span>
                 </button>
+                <button onclick="resetDisplay()" class="text-white py-2 sm:py-3 px-4 sm:px-6 rounded-full text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-xl font-bold flex-1 sm:flex-initial" style="background: linear-gradient(135deg, #FF6B35 0%, #FF8C00 100%); border: 2px solid #FFD700;" onmouseover="this.style.background='linear-gradient(135deg, #FF7F50 0%, #FFA500 100%)'" onmouseout="this.style.background='linear-gradient(135deg, #FF6B35 0%, #FF8C00 100%)'">
+                    <i class="fas fa-sync-alt"></i>
+                    <span class="hidden sm:inline ml-2">Reset</span>
+                </button>
             </div>
 
             <!-- Display Areas -->
@@ -197,6 +201,29 @@
                     totoSocialButtons.classList.remove('hidden'); // Show social buttons
                 }, 500);
             }, 100);
+        }
+
+        function resetDisplay() {
+            const numberDisplay = document.getElementById('numberDisplay');
+            const totoDisplay = document.getElementById('totoDisplay');
+            const socialButtons = document.getElementById('socialButtons');
+            const totoSocialButtons = document.getElementById('totoSocialButtons');
+
+            // Clear displays
+            numberDisplay.textContent = '';
+            totoDisplay.innerHTML = '';
+
+            // Hide both displays
+            numberDisplay.classList.add('hidden');
+            totoDisplay.classList.add('hidden');
+
+            // Hide social buttons
+            socialButtons.classList.add('hidden');
+            totoSocialButtons.classList.add('hidden');
+
+            // Reset animation classes
+            numberDisplay.classList.remove('number-enter-active', 'number-animation');
+            totoDisplay.classList.remove('number-enter-active', 'number-animation');
         }
 
         function shareOnFacebook() {
