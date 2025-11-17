@@ -11,6 +11,18 @@
     --red-shadow: rgba(196, 30, 58, 0.3);
 }
 
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 @keyframes float {
     0% {
         transform: translateY(0px);
@@ -164,4 +176,144 @@
 
 .toto-ball:hover {
     transform: scale(1.1);
+}
+
+/* Glassmorphism Card Styles */
+.glass-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+    padding: 2rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 48px 0 rgba(31, 38, 135, 0.25),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+}
+
+@media (min-width: 640px) {
+    .glass-card {
+        padding: 2.5rem;
+        border-radius: 32px;
+    }
+}
+
+/* Glass Button Styles */
+.glass-button {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.2);
+}
+
+/* Glass Display Area */
+.glass-display {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 24px 0 rgba(196, 30, 58, 0.15),
+                inset 0 0 20px 0 rgba(255, 215, 0, 0.1);
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Enhanced TOTO Ball with Glassmorphism */
+.toto-ball {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg,
+        rgba(139, 0, 139, 0.9) 0%,
+        rgba(196, 30, 58, 0.9) 100%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--caishen-gold);
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin: 0.25rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3),
+                inset 0 2px 8px rgba(255, 255, 255, 0.4),
+                0 0 20px rgba(255, 215, 0, 0.3);
+    border: 2px solid rgba(255, 215, 0, 0.8);
+    transition: all 0.3s ease-in-out;
+}
+
+@media (min-width: 640px) {
+    .toto-ball {
+        width: 3.5rem;
+        height: 3.5rem;
+        line-height: 3.5rem;
+        font-size: 1.5rem;
+        margin: 0.5rem;
+    }
+}
+
+.toto-ball:hover {
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4),
+                inset 0 2px 8px rgba(255, 255, 255, 0.5),
+                0 0 30px rgba(255, 215, 0, 0.5);
+}
+
+/* Image Card */
+.glass-image-container {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    display: inline-block;
+    box-shadow: 0 4px 20px 0 rgba(31, 38, 135, 0.1);
+}
+
+/* Social Buttons with Glass Effect */
+.social-button {
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin: 0.25rem;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@media (min-width: 640px) {
+    .social-buttons {
+        gap: 1rem;
+    }
+
+    .social-button {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+.social-button:hover {
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
