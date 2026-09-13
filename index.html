@@ -3,120 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fff8e9">
+    <meta name="description" content="Generate a random four-digit number with Caishen, then copy or share your result. Just for fun.">
     <title>Lucky 4D with Caishen</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico?v=1d9a612741" sizes="16x16 32x32 48x48">
+    <link rel="icon" type="image/png" href="assets/icons/favicon-32.png?v=1d9a612741" sizes="32x32">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" sizes="180x180">
+    <meta name="apple-mobile-web-app-title" content="Lucky 4D">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Lucky 4D with Caishen">
+    <meta property="og:title" content="Lucky 4D with Caishen">
+    <meta property="og:description" content="A little luck starts here. Generate a random four-digit number. Just for fun.">
+    <meta property="og:image" content="assets/images/social-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Lucky 4D with Caishen, with a smiling Caishen mascot on a cream background">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lucky 4D with Caishen">
+    <meta name="twitter:description" content="A little luck starts here. Random four-digit numbers, just for fun.">
+    <meta name="twitter:image" content="assets/images/social-preview.jpg">
+    <meta name="twitter:image:alt" content="Lucky 4D with Caishen and the Caishen mascot">
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css?v=d59b205656">
+    <script src="assets/js/app.js?v=68bd4a83c3" defer></script>
 </head>
-<body class="bg-yellow-200 min-h-screen flex flex-col">
-    <div class="pyro"></div>
-    <main class="flex-grow flex items-center justify-center p-4">
-        <div class="text-center max-w-md mx-auto">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-red-700 text-center tracking-wide drop-shadow-sm mb-6">
-                🎲 Feeling Lucky? Ask Caishen! 🍊
-            </h1>
-            <img src="img/image__2_-removebg-preview%20-%20Edited.png" alt="Caishen" class="mx-auto mb-4 float-animation w-48 sm:w-56 md:w-64">
-            <button onclick="generateNumber()" class="bg-yellow-800 text-white py-2 sm:py-3 px-4 sm:px-6 rounded-full text-base sm:text-lg hover:bg-yellow-700 transition-colors duration-300 shadow-lg hover:shadow-xl">Get Lucky 4D Numbers</button>
-            <div id="numberDisplay" class="mt-6 text-2xl sm:text-3xl font-bold text-yellow-800 number-enter"></div>
-            <div id="socialButtons" class="social-buttons flex-wrap">
-                <button onclick="shareOnFacebook()" class="social-button facebook">
-                    <i class="fab fa-facebook-f"></i>
-                    Share
-                </button>
-                <button onclick="shareOnTwitter()" class="social-button twitter">
-                    <i class="fab fa-twitter"></i>
-                    Tweet
-                </button>
-                <button onclick="shareOnWhatsApp()" class="social-button whatsapp">
-                    <i class="fab fa-whatsapp"></i>
-                    Share
-                </button>
+<body>
+    <header class="brand-header" aria-label="Creator and project collection">
+        <div class="brand-header-inner">
+            <div class="brand-signature">
+                <span class="creator-brand">BUILD BY RAT</span>
+                <span class="project-series">/ LAB / 001</span>
             </div>
+            <!-- Replace this span with an anchor when the project index URL is available. -->
+            <span class="experiments-link" aria-disabled="true">All Experiments <span class="collection-pending">(coming soon)</span></span>
         </div>
+    </header>
+    <main class="split-layout" id="mainContent">
+        <section class="generator" id="generator" aria-labelledby="pageTitle">
+            <div class="pyro" aria-hidden="true"></div>
+            <header>
+                <p class="eyebrow">Lucky 4D with Caishen</p>
+                <h1 id="pageTitle">A little luck starts here.</h1>
+                <p class="intro">Generate a random four-digit number.</p>
+            </header>
+            <div class="caishen mascot-layers" role="img" aria-label="Caishen holding a gold ingot">
+                <img src="assets/images/caishen.png" width="407" height="407" decoding="async" alt="" class="mascot-fallback" aria-hidden="true">
+                <img src="assets/images/caishen.png" width="407" height="407" decoding="async" alt="" class="mascot-layer mascot-body" aria-hidden="true">
+                <img src="assets/images/caishen.png" width="407" height="407" decoding="async" alt="" class="mascot-layer mascot-head" aria-hidden="true">
+                <img src="assets/images/caishen.png" width="407" height="407" decoding="async" alt="" class="mascot-layer mascot-hands" aria-hidden="true">
+            </div>
+            <div class="result">
+                <p class="result-label">Your number</p>
+                <div id="numberDisplay" class="number-display" role="status" aria-live="polite" aria-atomic="true" aria-label="No number generated yet">————</div>
+            </div>
+            <button id="generateButton" type="button" class="primary-button"><i class="fa-solid fa-dice button-icon" aria-hidden="true"></i><span id="generateLabel">Generate 4D number</span></button>
+            <div class="result-actions">
+                <button id="copyButton" type="button" class="secondary-button" disabled><i class="fa-regular fa-copy button-icon" aria-hidden="true"></i><span id="copyLabel">Copy number</span></button>
+                <button id="nativeShareButton" type="button" class="secondary-button" hidden disabled><i class="fa-solid fa-arrow-up-from-bracket button-icon" aria-hidden="true"></i><span id="shareLabel">Share number</span></button>
+            </div>
+            <p id="actionStatus" class="action-status" role="status" aria-live="polite"></p>
+            <div id="socialButtons" class="social-buttons" hidden role="group" aria-label="Share your number">
+                <span class="share-label">Share on</span>
+                <button id="facebookButton" type="button" class="social-button" aria-label="Share on Facebook" disabled><i class="fa-brands fa-facebook button-icon" aria-hidden="true"></i><span id="facebookLabel">Facebook</span></button>
+                <button id="twitterButton" type="button" class="social-button" aria-label="Share on X" disabled><i class="fa-brands fa-x-twitter button-icon" aria-hidden="true"></i><span id="twitterLabel">X</span></button>
+                <button id="whatsappButton" type="button" class="social-button" aria-label="Share on WhatsApp" disabled><i class="fa-brands fa-whatsapp button-icon" aria-hidden="true"></i><span id="whatsappLabel">WhatsApp</span></button>
+            </div>
+            <p class="disclaimer">Just for fun. Random numbers don’t predict winning results.</p>
+        </section>
+        <article class="editorial" id="aboutProject" aria-labelledby="storyTitle">
+            <header class="editorial-header">
+                <p class="eyebrow">The making of · A development journal</p>
+                <h2 id="storyTitle">A little luck.<br>A lot of learning.</h2>
+                <p class="editorial-deck">Building a playful experience, one conversation with AI at a time.</p>
+                <p class="editorial-byline">By Build By Rat · Developed with Codex assistance</p>
+                <a class="try-link" href="#generator">Try the generator <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </header>
+            <section class="chapter" aria-labelledby="chapter1">
+                <p class="chapter-number">01 / The idea</p>
+                <h3 id="chapter1">Make something small, and make it useful.</h3>
+                <p>A Caishen-themed website with one simple purpose: generate a random four-digit number, then copy or share it. A small project became a practical experiment in AI-assisted development.</p>
+            </section>
+            <section class="chapter" aria-labelledby="chapter2">
+                <p class="chapter-number">02 / The collaboration</p>
+                <h3 id="chapter2">I set the direction. AI helped build.</h3>
+                <p>I chose the product direction, reviewed browser screenshots, and decided what to refine. Codex helped review the code, separate markup from styles and scripts, and implement the changes.</p>
+                <p>Together, we made the result easier to read, added copying and sharing, and introduced keyboard focus styles, result announcements, and reduced-motion support.</p>
+            </section>
+            <section class="chapter" aria-labelledby="chapter3">
+                <p class="chapter-number">03 / The review</p>
+                <h3 id="chapter3">The browser had the final word.</h3>
+                <p>Screenshots caught what code checks missed: cached styles broke the layout, and generated mascot artwork showed an unwanted background. Versioned assets addressed the stale styles; restoring the original transparent mascot resolved the visible square.</p>
+            </section>
+            <section class="chapter" aria-labelledby="chapter4">
+                <p class="chapter-number">04 / The lesson</p>
+                <h3 id="chapter4">Keep the judgment human.</h3>
+                <p>AI helped turn feedback into working revisions. Reviewing the actual experience, questioning the output, and choosing what to keep were still part of my job.</p>
+                <p class="story-note">Selected JavaScript behaviors were checked. Full mobile, screen-reader, and cross-browser testing remains to be completed.</p>
+            </section>
+        </article>
     </main>
-
-    <footer class="text-center text-xs text-gray-500 py-6">
-        Built with ❤️ and 🤖 magic. Enjoy your lucky 4D draw! 🍀
-    </footer>
-
-    <script>
-        function createFirework(x, y) {
-            const colors = ['#ff0', '#f0f', '#0ff', '#f00', '#0f0'];
-            const particles = 30;
-            const pyro = document.querySelector('.pyro');
-
-            for (let i = 0; i < particles; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'firework';
-                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                
-                const angle = (i * 360) / particles;
-                const velocity = 50 + Math.random() * 50;
-                const dx = Math.cos(angle * Math.PI / 180) * velocity;
-                const dy = Math.sin(angle * Math.PI / 180) * velocity;
-                
-                particle.style.setProperty('--x', `${x}px`);
-                particle.style.setProperty('--y', `${y}px`);
-                particle.style.setProperty('--dx', `${dx}px`);
-                particle.style.setProperty('--dy', `${dy}px`);
-                
-                particle.style.animation = 'firework 1s forwards';
-                
-                pyro.appendChild(particle);
-                setTimeout(() => particle.remove(), 1000);
-            }
-        }
-
-        function createMultipleFireworks() {
-            const width = window.innerWidth;
-            const height = window.innerHeight;
-            
-            for (let i = 0; i < 3; i++) {
-                setTimeout(() => {
-                    const x = Math.random() * width;
-                    const y = Math.random() * (height * 0.7); // Keep fireworks in upper 70% of screen
-                    createFirework(x, y);
-                }, i * 300);
-            }
-        }
-
-        function generateNumber() {
-            const number = String(Math.floor(Math.random() * 10000)).padStart(4, '0');
-            const display = document.getElementById('numberDisplay');
-            
-            // Reset classes
-            display.classList.remove('number-enter-active', 'number-animation');
-            display.classList.add('number-enter');
-            
-            setTimeout(() => {
-                display.textContent = number;
-                display.classList.add('number-enter-active');
-                
-                setTimeout(() => {
-                    display.classList.add('number-animation');
-                    createMultipleFireworks(); // Add fireworks after number animation
-                }, 500);
-            }, 100);
-        }
-
-        function shareOnFacebook() {
-            const number = document.getElementById('numberDisplay').textContent;
-            const text = `My lucky 4D number from Caishen is ${number}! 🎲🍊`;
-            const url = window.location.href;
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`, '_blank');
-        }
-
-        function shareOnTwitter() {
-            const number = document.getElementById('numberDisplay').textContent;
-            const text = `My lucky 4D number from Caishen is ${number}! 🎲🍊`;
-            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
-        }
-
-        function shareOnWhatsApp() {
-            const number = document.getElementById('numberDisplay').textContent;
-            const text = `My lucky 4D number from Caishen is ${number}! 🎲🍊`;
-            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-        }
-    </script>
+    <footer class="project-footer">A Build By Rat experiment · LAB / 001 · Built with AI assistance.</footer>
 </body>
 </html>
